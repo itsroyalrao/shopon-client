@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import getItems from "../functions/getItems";
 import Header from "../components/Header";
+import addedToCart from "../functions/addedToCart";
 
 function Products() {
   const [items, setItems] = useState(null);
@@ -37,7 +38,12 @@ function Products() {
                     <div className="border-2 border-[rgb(0,94,72)] px-3 py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer">
                       Details
                     </div>
-                    <div className="border-2 border-[rgb(0,94,72)] px-3 py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer">
+                    <div
+                      className="border-2 border-[rgb(0,94,72)] px-3 py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer"
+                      onClick={() => {
+                        addedToCart(item._id);
+                      }}
+                    >
                       Add to Cart
                     </div>
                   </div>
