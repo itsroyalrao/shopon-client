@@ -1,5 +1,11 @@
+import Header from "../components/Header";
+
 function Orders() {
-  return <div>Orders</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default Orders;

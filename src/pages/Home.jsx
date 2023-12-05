@@ -1,5 +1,11 @@
+import Header from "../components/Header";
+
 function Home() {
-  return <div className="w-full grow  text-white">Home</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default Home;

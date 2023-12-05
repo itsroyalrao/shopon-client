@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import getItem from "../functions/getItem";
 import updateItem from "../functions/updateItem";
+import Header from "../components/Header";
 
 function UpdateProduct() {
   const { id } = useParams();
@@ -27,6 +28,7 @@ function UpdateProduct() {
 
   return (
     <>
+      <Header />
       {item && (
         <div className="w-full flex justify-center py-9">
           <div className="w-[40%] lg:w-[25%] space-y-3">

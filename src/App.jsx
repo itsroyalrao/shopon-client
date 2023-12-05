@@ -5,15 +5,17 @@ import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 import AddProduct from "./pages/AddProduct";
 import AdminProducts from "./pages/AdminProducts";
-import Header from "./components/Header";
 import UpdateProduct from "./pages/UpdateProduct";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <Router>
       <div className="flex flex-col w-full min-h-[100svh] bg-[#242424] text-white relative">
-        <Header />
         <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
