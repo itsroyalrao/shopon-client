@@ -12,9 +12,9 @@ function AdminProducts() {
   }, []);
   return (
     <>
+      <Header />
       {items && items.length ? (
         <>
-          <Header />
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5">
             {items.map((item) => {
               return (
