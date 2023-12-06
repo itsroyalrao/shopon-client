@@ -7,7 +7,6 @@ import orderItems from "../functions/orderItems";
 
 function Cart() {
   const [items, setItems] = useState(null);
-  console.log(items);
 
   useEffect(() => {
     getCartItems(setItems);
@@ -70,24 +69,24 @@ function Cart() {
               );
             })}
           </div>
+          <div className="w-full flex items-center px-5 py-2 lg:px-12 fixed bottom-0 bg-[rgb(0,94,72)]">
+            <div className="grow flex justify-center text-xl">Total</div>
+            <div className="grow"></div>
+            <div
+              className="bg-blue-600 px-5 py-3 tracking-wider rounded cursor-pointer"
+              onClick={() => {
+                orderItems(items);
+              }}
+            >
+              PLACE ORDER
+            </div>
+          </div>
         </>
       ) : (
         <div className="grow flex justify-center items-center text-3xl">
           List is empty
         </div>
       )}
-      <div className="w-full flex items-center px-5 py-2 lg:px-12 fixed bottom-0 bg-[rgb(0,94,72)]">
-        <div className="grow flex justify-center text-xl">Total</div>
-        <div className="grow"></div>
-        <div
-          className="bg-blue-600 px-5 py-3 tracking-wider rounded cursor-pointer"
-          onClick={() => {
-            orderItems(items);
-          }}
-        >
-          PLACE ORDER
-        </div>
-      </div>
     </>
   );
 }

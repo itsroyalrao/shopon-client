@@ -5,7 +5,6 @@ import cancelOrders from "../functions/cancelOrders";
 
 function Orders() {
   const [items, setItems] = useState(null);
-  console.log(items);
 
   useEffect(() => {
     getOrderedItems(setItems);
