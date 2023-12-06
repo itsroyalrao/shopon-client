@@ -26,4 +26,14 @@ const removeFromCart = async (id) => {
   }
 };
 
-export { decreaseQuantity, removeFromCart };
+const emptyCart = async () => {
+  try {
+    const user = localStorage.getItem("user");
+
+    await axios.delete(`http://localhost:3000/cart/empty?user=${user}`);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export { decreaseQuantity, removeFromCart, emptyCart };

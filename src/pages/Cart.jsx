@@ -3,9 +3,11 @@ import Header from "../components/Header";
 import getCartItems from "../functions/getCartItems";
 import addedToCart from "../functions/addedToCart";
 import { decreaseQuantity, removeFromCart } from "../functions/removeFromCart";
+import orderItems from "../functions/orderItems";
 
 function Cart() {
   const [items, setItems] = useState(null);
+  console.log(items);
 
   useEffect(() => {
     getCartItems(setItems);
@@ -15,12 +17,12 @@ function Cart() {
       <Header />
       {items && items.length ? (
         <>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5 pb-20">
             {items.map((item) => {
               return (
                 <div
                   className="w-full h-80 bg-[#484848] rounded flex flex-col items-center py-2 shadow shadow-gray-400 space-y-1"
-                  key={item.itemID._id}
+                  key={item._id}
                 >
                   <div className="text-xl capitalize px-2">
                     {item.itemID.title}
@@ -74,6 +76,18 @@ function Cart() {
           List is empty
         </div>
       )}
+      <div className="w-full flex items-center px-5 py-2 lg:px-12 fixed bottom-0 bg-[rgb(0,94,72)]">
+        <div className="grow flex justify-center text-xl">Total</div>
+        <div className="grow"></div>
+        <div
+          className="bg-blue-600 px-5 py-3 tracking-wider rounded cursor-pointer"
+          onClick={() => {
+            orderItems(items);
+          }}
+        >
+          PLACE ORDER
+        </div>
+      </div>
     </>
   );
 }

@@ -58,7 +58,18 @@ function Header() {
           </Link>
         </div>
       </div>
-      <div className="flex items-center space-x-1">
+      <div className="flex items-center">
+        <Link
+          to={"/login"}
+          className="bg-red-500 px-4 py-2 rounded"
+          onClick={() => {
+            localStorage.clear();
+          }}
+        >
+          Logout
+        </Link>
+      </div>
+      {/* <div className="flex items-center space-x-1">
         <Link to={"/signup"} className="bg-blue-600 px-4 py-2 rounded">
           Register
         </Link>
@@ -68,7 +79,7 @@ function Header() {
         >
           Login
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
