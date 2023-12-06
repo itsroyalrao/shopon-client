@@ -2,9 +2,9 @@ import axios from "axios";
 
 const decreaseQuantity = async (id) => {
   try {
-    // const response = await axios.post(`http://localhost:3000/cart/remove`, {
     const response = await axios.post(
-      `https://shopon-backend-production.up.railway.app/cart/remove`,
+      `http://localhost:3000/cart/remove`,
+      // `https://shopon-backend-production.up.railway.app/cart/remove`,
       {
         id,
       }

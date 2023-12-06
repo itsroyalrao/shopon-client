@@ -43,7 +43,7 @@ function AdminProducts() {
                       Edit
                     </Link>
                     <div
-                      className="border-2 border-red-600 px-3 py-1 rounded hover:bg-red-600 cursor-pointer"
+                      className="border-2 border-red-500 px-3 py-1 rounded hover:bg-red-500 cursor-pointer"
                       onClick={() => deleteItem(item._id, setItems)}
                     >
                       Delete

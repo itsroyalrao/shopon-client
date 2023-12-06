@@ -56,7 +56,7 @@ function Cart() {
                       />
                     </div>
                     <div
-                      className="border-2 border-[rgb(0,94,72)] px-3 py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer"
+                      className="border-2 border-red-500 hover:bg-red-500 px-3 py-1 rounded cursor-pointer"
                       onClick={() => {
                         removeFromCart(item.itemID._id);
                       }}
