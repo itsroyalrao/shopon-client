@@ -9,9 +9,6 @@ function Home() {
   return (
     <>
       <Header />
-      <div className="grow flex justify-center items-center text-yellow-400 bg-red-600">
-        dvbdfbfdbdfbdfbdfbdfbdf
-      </div>
     </>
   );
 }
