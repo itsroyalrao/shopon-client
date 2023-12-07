@@ -8,8 +8,8 @@ async function getUser(email, password, setMessage) {
       localStorage.setItem("user", email);
 
       const response = await axios.post(
-        `http://localhost:3000/auth/login`,
-        // `https://shopon-backend-production.up.railway.app/auth/login`,
+        // `http://localhost:3000/auth/login`,
+        `https://shopon-backend-production.up.railway.app/auth/login`,
         {
           email,
           password,
