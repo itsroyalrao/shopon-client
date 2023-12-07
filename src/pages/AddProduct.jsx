@@ -1,6 +1,7 @@
 import { useState } from "react";
 import addItem from "../functions/addItem";
 import Header from "../components/Header";
+import onMobile from "../functions/onMobile";
 
 function AddProduct() {
   const [title, setTitle] = useState("");
@@ -12,7 +13,13 @@ function AddProduct() {
     <>
       <Header />
       <div className="w-full flex justify-center py-9">
-        <div className="w-[40%] lg:w-[25%] space-y-3">
+        <div
+          className={
+            onMobile()
+              ? "w-[80%] space-y-3"
+              : "w-[80%] sm:w-[60%] md:w-[40%] lg:w-[25%] space-y-3"
+          }
+        >
           <div className="w-full space-y-1">
             <div>Title</div>
             <input
@@ -52,7 +59,11 @@ function AddProduct() {
             />
           </div>
           <div
-            className="border-2 border-[rgb(0,94,72)] flex justify-center text-lg py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer"
+            className={
+              onMobile
+                ? `bg-[rgb(0,94,72)] flex justify-center text-lg py-1 rounded`
+                : `border-2 border-[rgb(0,94,72)] flex justify-center text-lg py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer`
+            }
             onClick={() => {
               addItem(title, imageURL, price, description);
               setTitle("");
