@@ -10,9 +10,10 @@ import {
 
 function Cart() {
   const [items, setItems] = useState(null);
+  const [total, setTotal] = useState(null);
 
   useEffect(() => {
-    getCartItems(setItems);
+    getCartItems(setItems, total, setTotal);
   }, []);
   return (
     <>
@@ -71,7 +72,9 @@ function Cart() {
             })}
           </div>
           <div className="w-full flex items-center px-5 py-2 lg:px-12 fixed bottom-0 bg-[rgb(0,94,72)]">
-            <div className="grow flex justify-center text-xl">Total</div>
+            <div className="grow flex justify-center text-xl">
+              Total = Rs {total}
+            </div>
             <div className="grow"></div>
             <div
               className="bg-blue-600 px-5 py-3 tracking-wider rounded cursor-pointer"

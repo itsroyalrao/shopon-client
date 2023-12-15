@@ -16,7 +16,7 @@ const addedToCart = async (id, title, imageURL, price, description) => {
   }
 };
 
-const getCartItems = async (setItems) => {
+const getCartItems = async (setItems, total, setTotal) => {
   try {
     const user = localStorage.getItem("user");
 
@@ -25,7 +25,14 @@ const getCartItems = async (setItems) => {
       `https://shopon-backend-production.up.railway.app/auth/cart?user=${user}`
       // `https://shopon.cyclic.app/auth/cart?user=${user}`
     );
-    if (response.data.success) setItems(response.data.items);
+
+    if (response.data.success) {
+      response.data.items.forEach((item) => {
+        total += item.price * item.quantity;
+      });
+      setTotal(total);
+      setItems(response.data.items);
+    }
   } catch (e) {
     console.log(e);
   }
