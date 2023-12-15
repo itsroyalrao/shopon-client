@@ -1,7 +1,7 @@
 import { useState } from "react";
-import addItem from "../functions/addItem";
 import Header from "../components/Header";
 import onMobile from "../functions/onMobile";
+import { addItem } from "../functions/item";
 
 function AddProduct() {
   const [title, setTitle] = useState("");

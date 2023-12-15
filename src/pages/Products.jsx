@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import getItems from "../functions/getItems";
 import Header from "../components/Header";
 import { addedToCart } from "../functions/cart";
+import { getItems } from "../functions/item";
 
 function Products() {
   const [items, setItems] = useState(null);

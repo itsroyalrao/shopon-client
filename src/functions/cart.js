@@ -44,7 +44,6 @@ const decreaseQuantity = async (id) => {
 
 const removeFromCart = async (id) => {
   try {
-    console.log(id);
     const response = await axios.delete(
       // `http://localhost:3000/auth/cart/remove?user=${user}&id=${id}`
       `https://shopon-backend-production.up.railway.app/auth/cart/remove?user=${user}&id=${id}`

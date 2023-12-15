@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import getItems from "../functions/getItems";
-import deleteItem from "../functions/deleteItem";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import { deleteItem, getItems } from "../functions/item";
 
 function AdminProducts() {
   const [items, setItems] = useState(null);

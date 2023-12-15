@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import getItem from "../functions/getItem";
-import updateItem from "../functions/updateItem";
 import Header from "../components/Header";
+import { getItem, updateItem } from "../functions/item";
 
 function UpdateProduct() {
   const { id } = useParams();
