@@ -11,8 +11,8 @@ async function addUser(username, email, password, confirmPassword, setMessage) {
 
       const response = await axios.post(
         // `http://localhost:3000/auth/signup`,
-        // `https://shopon-backend-production.up.railway.app/auth/signup`,
-        `https://shopon.cyclic.app/auth/signup`,
+        `https://shopon-backend-production.up.railway.app/auth/signup`,
+        // `https://shopon.cyclic.app/auth/signup`,
         {
           username,
           email,
@@ -37,8 +37,8 @@ async function getUser(email, password, setMessage) {
 
       const response = await axios.post(
         // `http://localhost:3000/auth/login`,
-        // `https://shopon-backend-production.up.railway.app/auth/login`,
-        `https://shopon.cyclic.app/auth/login`,
+        `https://shopon-backend-production.up.railway.app/auth/login`,
+        // `https://shopon.cyclic.app/auth/login`,
         {
           email,
           password,
