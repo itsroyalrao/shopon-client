@@ -9,7 +9,8 @@ const addItem = async (title, imageURL, price, description) => {
 
       await axios.post(
         // `http://localhost:3000/add-product`,
-        `https://shopon-backend-production.up.railway.app/add-product`,
+        // `https://shopon-backend-production.up.railway.app/add-product`,
+        `https://shopon.cyclic.app/add-product`,
         {
           user,
           title,
@@ -28,7 +29,8 @@ const getItem = async (id, setItem) => {
   try {
     const response = await axios.get(
       // `http://localhost:3000/products/${id}`
-      `https://shopon-backend-production.up.railway.app/products/${id}`
+      // `https://shopon-backend-production.up.railway.app/products/${id}`
+      `https://shopon.cyclic.app/products/${id}`
     );
     if (response.data.success) setItem(response.data.item);
   } catch (e) {
@@ -40,7 +42,8 @@ const getItems = async (setItems) => {
   try {
     const response = await axios.get(
       // `http://localhost:3000/products`
-      `https://shopon-backend-production.up.railway.app/products`
+      // `https://shopon-backend-production.up.railway.app/products`
+      `https://shopon.cyclic.app/products`
     );
     if (response.data.success) setItems(response.data.items);
   } catch (e) {
@@ -52,7 +55,8 @@ const updateItem = async (id, title, imageURL, price, description) => {
   try {
     const response = await axios.put(
       // `http://localhost:3000/admin-products`,
-      `https://shopon-backend-production.up.railway.app/admin-products`,
+      // `https://shopon-backend-production.up.railway.app/admin-products`,
+      `https://shopon.cyclic.app/admin-products`,
       {
         id,
         title,
@@ -72,7 +76,8 @@ const deleteItem = async (id, setItems) => {
   try {
     await axios.delete(
       // `http://localhost:3000/admin-products?id=${id}`
-      `https://shopon-backend-production.up.railway.app/admin-products?id=${id}`
+      // `https://shopon-backend-production.up.railway.app/admin-products?id=${id}`
+      `https://shopon.cyclic.app/admin-products?id=${id}`
     );
     getItems(setItems);
   } catch (e) {
