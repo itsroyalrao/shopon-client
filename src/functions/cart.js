@@ -5,7 +5,7 @@ const user = localStorage.getItem("user");
 const addedToCart = async (id, title, imageURL, price, description) => {
   try {
     const response = await axios.post(
-      // `http://localhost:3000/auth/cart`
+      // `http://localhost:3000/auth/cart`,
       `https://shopon-backend-production.up.railway.app/auth/cart`,
       { user, id, title, imageURL, price, description }
     );
@@ -32,7 +32,7 @@ const getCartItems = async (setItems) => {
 const decreaseQuantity = async (id) => {
   try {
     const response = await axios.post(
-      // `http://localhost:3000/auth/cart/decrease`
+      // `http://localhost:3000/auth/cart/decrease`,
       `https://shopon-backend-production.up.railway.app/auth/cart/decrease`,
       { user, id }
     );
@@ -71,7 +71,7 @@ const orderItems = async (items) => {
   try {
     const user = localStorage.getItem("user");
     const response = await axios.post(
-      // `http://localhost:3000/auth/orders`
+      // `http://localhost:3000/auth/orders`,
       `https://shopon-backend-production.up.railway.app/auth/orders`,
       { user, items }
     );

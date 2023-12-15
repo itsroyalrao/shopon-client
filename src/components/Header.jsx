@@ -17,20 +17,14 @@ function Header() {
         <>
           <div className="hidden lg:flex justify-between items-center bg-[rgb(0,94,72)] px-9 sticky top-0 text-lg">
             <div className="flex items-center space-x-9">
-              <div className="text-xl font-bold">ShopOn</div>
+              <Link to={"/"} className="text-xl font-bold">
+                ShopOn
+              </Link>
               <div className="flex space-x-9 py-4">
                 <Link
                   to={"/"}
                   className={`hover:text-yellow-400 ${
                     pageName === "" ? "text-yellow-400" : ""
-                  }`}
-                >
-                  Home
-                </Link>
-                <Link
-                  to={"/products"}
-                  className={`hover:text-yellow-400 ${
-                    pageName === "products" ? "text-yellow-400" : ""
                   }`}
                 >
                   Products
@@ -67,6 +61,14 @@ function Header() {
                 >
                   Admin Products
                 </Link>
+                {/* <Link
+                  to={"/contact-us"}
+                  className={`hover:text-yellow-400 ${
+                    pageName === "contact-us" ? "text-yellow-400" : ""
+                  }`}
+                >
+                  Contact Us
+                </Link> */}
               </div>
             </div>
             <div className="flex items-center">

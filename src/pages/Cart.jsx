@@ -85,7 +85,7 @@ function Cart() {
         </>
       ) : (
         <div className="grow flex justify-center items-center text-3xl">
-          List is empty
+          Cart is empty
         </div>
       )}
     </>

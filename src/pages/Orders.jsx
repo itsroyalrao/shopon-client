@@ -53,7 +53,7 @@ function Orders() {
         </>
       ) : (
         <div className="grow flex justify-center items-center text-3xl">
-          List is empty
+          No orders yet
         </div>
       )}
     </>

@@ -10,7 +10,7 @@ async function addUser(username, email, password, confirmPassword, setMessage) {
       localStorage.setItem("user", email);
 
       const response = await axios.post(
-        // `http://localhost:3000/auth/signup`
+        // `http://localhost:3000/auth/signup`,
         `https://shopon-backend-production.up.railway.app/auth/signup`,
         {
           username,
@@ -35,7 +35,7 @@ async function getUser(email, password, setMessage) {
       localStorage.setItem("user", email);
 
       const response = await axios.post(
-        // `http://localhost:3000/auth/login`
+        // `http://localhost:3000/auth/login`,
         `https://shopon-backend-production.up.railway.app/auth/login`,
         {
           email,

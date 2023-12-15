@@ -7,7 +7,9 @@ function Products() {
   const [items, setItems] = useState(null);
 
   useEffect(() => {
-    getItems(setItems);
+    const user = localStorage.getItem("user");
+    if (!user) window.location.href = "/login";
+    else getItems(setItems);
   }, []);
   return (
     <>

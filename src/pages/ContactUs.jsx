@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Header from "../components/Header";
 
-function Home() {
+function ContactUs() {
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (!user) window.location.href = "/login";
@@ -13,4 +13,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default ContactUs;
