@@ -8,8 +8,8 @@ const addItem = async (title, imageURL, price, description) => {
       const user = localStorage.getItem("user");
 
       await axios.post(
-        `http://localhost:3000/add-product` ||
-          `https://shopon-backend-production.up.railway.app/add-product`,
+        // `http://localhost:3000/add-product`
+        `https://shopon-backend-production.up.railway.app/add-product`,
         {
           user,
           title,
