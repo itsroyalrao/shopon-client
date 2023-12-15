@@ -89,7 +89,7 @@ const orderItems = async (items) => {
       { user, items }
     );
     if (response.data.success) {
-      emptyCart();
+      await emptyCart();
       window.location.href = "/orders";
     }
   } catch (e) {
