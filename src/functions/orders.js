@@ -20,8 +20,8 @@ const cancelOrders = async (id, setItems) => {
     const user = localStorage.getItem("user");
     await axios.delete(
       // `http://localhost:3000/auth/orders?user=${user}&id=${id}`
-      `https://shopon-backend-production.up.railway.app/auth/orders?user=${user}&id=${id}`
-      // `https://shopon.cyclic.app/auth/orders?user=${user}&id=${id}`
+      // `https://shopon-backend-production.up.railway.app/auth/orders?user=${user}&id=${id}`
+      `https://shopon.cyclic.app/auth/orders?user=${user}&id=${id}`
     );
     getOrderedItems(setItems);
   } catch (e) {
