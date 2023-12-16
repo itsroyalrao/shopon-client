@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import onMobile from "../functions/onMobile";
 
 function MobileView({ clicked, setClicked }) {
   return (
     <div className="flex justify-between items-center bg-[rgb(0,94,72)] px-5 py-4 sticky top-0 text-lg">
-      <Link to={"/"} className="text-xl font-bold">
+      <Link to={onMobile() ? "/home" : "/"} className="text-xl font-bold">
         ShopOn
       </Link>
       <div className="flex flex-col items-center pr-2">
@@ -56,7 +57,7 @@ function MobileView({ clicked, setClicked }) {
               <div className="">Contact Us</div>
             </Link> */}
             <Link
-              to={"/login"}
+              to={onMobile() ? "/" : "/login"}
               className="flex justify-center text-[whitesmoke] bg-red-600 px-3 py-2 rounded active:bg-red-700"
             >
               Logout
