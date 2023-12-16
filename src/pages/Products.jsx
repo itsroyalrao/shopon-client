@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { addedToCart } from "../functions/cart";
 import { getItems } from "../functions/item";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import onMobile from "../functions/onMobile";
 
 function Products() {
-  const location = useLocation();
-  const user = new URLSearchParams(location.search).get("email");
+  // const location = useLocation();
+  // const user = new URLSearchParams(location.search).get("email");
+
+  const user = localStorage.getItem("user");
 
   const [items, setItems] = useState(null);
-
-  console.log();
 
   useEffect(() => {
     if (onMobile()) window.location.href = "/login";

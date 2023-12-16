@@ -43,7 +43,7 @@ async function getUser(email, password, setMessage) {
           password,
         }
       );
-      if (response.data.success) window.location.href = `/?email=${email}`;
+      if (response.data.success) window.location.href = `/`;
       else setMessage(response.data.msg);
     }
   } catch (e) {
