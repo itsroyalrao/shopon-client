@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { addedToCart } from "../functions/cart";
 import { getItems } from "../functions/item";
+import onMobile from "../functions/onMobile";
 // import { useLocation } from "react-router-dom";
 
 function Products() {
@@ -13,8 +14,10 @@ function Products() {
   const [items, setItems] = useState(null);
 
   useEffect(() => {
-    if (user) getItems(setItems);
-    else window.location.href = "/login";
+    if (!onMobile()) {
+      if (user) getItems(setItems);
+      else window.location.href = "/login";
+    }
   }, [user]);
   return (
     <>
