@@ -7,7 +7,6 @@ import AdminProducts from "./pages/AdminProducts";
 import UpdateProduct from "./pages/UpdateProduct";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import onMobile from "./functions/onMobile";
 // import ContactUs from "./pages/ContactUs";
 
 function App() {
@@ -16,8 +15,8 @@ function App() {
       <div className="flex flex-col w-full min-h-[100svh] bg-[#242424] text-white relative">
         <Routes>
           <Route path="/signup" element={<Signup />} />
-          <Route path={onMobile() ? "/" : "/login"} element={<Login />} />
-          <Route path={onMobile() ? "/home" : "/"} element={<Products />} />
+          <Route path={"/login"} element={<Login />} />
+          <Route path={"/"} element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/admin/add-product" element={<AddProduct />} />

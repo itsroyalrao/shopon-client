@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { addUser } from "../functions/user";
-import onMobile from "../functions/onMobile";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -64,10 +63,7 @@ function Signup() {
             </button>
             <div className="flex justify-center space-x-1">
               <span>Already have an account?</span>
-              <Link
-                to={onMobile() ? "/" : "/login"}
-                className="font-bold text-blue-500"
-              >
+              <Link to={"/login"} className="font-bold text-blue-500">
                 Login
               </Link>
             </div>

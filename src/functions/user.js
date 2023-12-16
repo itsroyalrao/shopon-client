@@ -1,5 +1,4 @@
 import axios from "axios";
-import onMobile from "./onMobile";
 
 async function addUser(username, email, password, confirmPassword, setMessage) {
   try {
@@ -44,8 +43,7 @@ async function getUser(email, password, setMessage) {
           password,
         }
       );
-      if (response.data.success)
-        window.location.href = onMobile() ? `/home` : `/`;
+      if (response.data.success) window.location.href = `/`;
       else setMessage(response.data.msg);
     }
   } catch (e) {
