@@ -55,8 +55,8 @@ const decreaseQuantity = async (id) => {
 const removeFromCart = async (id) => {
   try {
     const response = await axios.delete(
-      // `http://localhost:3000/auth/cart/remove?user=${user}&id=${id}`
-      `https://shopon-backend-production.up.railway.app/auth/cart/remove?user=${user}&id=${id}`
+      `http://localhost:3000/auth/cart/remove?user=${user}&id=${id}`
+      // `https://shopon-backend-production.up.railway.app/auth/cart/remove?user=${user}&id=${id}`
       // `https://shopon.cyclic.app/auth/cart/remove?user=${user}&id=${id}`
     );
     if (response.data.success) window.location.href = "/cart";

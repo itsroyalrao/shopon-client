@@ -19,7 +19,6 @@ async function addUser(username, email, password, confirmPassword, setMessage) {
           password,
         }
       );
-      console.log(response);
       if (response.data.success) window.location.href = "/";
       else setMessage(response.data.msg);
     }
@@ -44,7 +43,7 @@ async function getUser(email, password, setMessage) {
           password,
         }
       );
-      if (response.data.success) window.location.href = "/";
+      if (response.data.success) window.location.href = `/?email=${email}`;
       else setMessage(response.data.msg);
     }
   } catch (e) {
