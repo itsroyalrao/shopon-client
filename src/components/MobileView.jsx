@@ -16,7 +16,12 @@ function MobileView({ clicked, setClicked, email, username }) {
         />
         {clicked && (
           <div className="w-[75%] h-full flex flex-col space-y-2 fixed top-[60px] right-0 bg-[#121212] p-3">
-            {username && <div className="">{username}</div>}
+            {username && (
+              <div className="flex items-center space-x-2 p-2">
+                <i className="fas fa-user"></i>
+                <div>{username}</div>
+              </div>
+            )}
             <Link to={"/"} className="flex items-center space-x-2 p-2">
               <i className="fas fa-tag" />
               <div className="">Products</div>
