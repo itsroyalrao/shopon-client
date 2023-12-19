@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import {
-  addedToCart,
   getCartItems,
   decreaseQuantity,
   removeFromCart,
   orderItems,
+  increaseQuantity,
 } from "../functions/cart";
 import { useNavigate } from "react-router-dom";
 import { isAuthorized } from "../functions/user";
@@ -53,7 +53,12 @@ function Cart() {
                         <i
                           className="p-2 fas fa-minus border-2 border-[rgb(0,94,72)] hover:bg-[rgb(0,94,72)] rounded-s cursor-pointer"
                           onClick={() => {
-                            decreaseQuantity(item.id);
+                            decreaseQuantity(
+                              item.id,
+                              navigate,
+                              setItems,
+                              setTotal
+                            );
                           }}
                         />
                         <div className="px-2 py-1 border-2 border-[rgb(0,94,72)] hover:bg-[rgb(0,94,72)] cursor-pointer">
@@ -62,7 +67,12 @@ function Cart() {
                         <i
                           className="p-2 fas fa-plus border-2 border-[rgb(0,94,72)] hover:bg-[rgb(0,94,72)] rounded-e cursor-pointer"
                           onClick={() => {
-                            addedToCart(item.id);
+                            increaseQuantity(
+                              item.id,
+                              navigate,
+                              setItems,
+                              setTotal
+                            );
                           }}
                         />
                       </div>

@@ -38,13 +38,31 @@ const getCartItems = async (setItems, setTotal) => {
   }
 };
 
-const decreaseQuantity = async (id) => {
+const increaseQuantity = async (id, navigate, setItems, setTotal) => {
+  try {
+    const response = await axios.post(`${url()}/auth/cart/increase`, {
+      user,
+      id,
+    });
+    if (response.data.success) {
+      getCartItems(setItems, setTotal);
+      navigate("/cart");
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const decreaseQuantity = async (id, navigate, setItems, setTotal) => {
   try {
     const response = await axios.post(`${url()}/auth/cart/decrease`, {
       user,
       id,
     });
-    if (response.data.success) window.location.href = "/cart";
+    if (response.data.success) {
+      getCartItems(setItems, setTotal);
+      navigate("/cart");
+    }
   } catch (e) {
     console.log(e);
   }
@@ -87,6 +105,7 @@ const orderItems = async (items) => {
 export {
   addedToCart,
   getCartItems,
+  increaseQuantity,
   decreaseQuantity,
   removeFromCart,
   emptyCart,
