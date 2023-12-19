@@ -1,11 +1,9 @@
 import axios from "axios";
 import { url } from "./onMobile";
 
-const getOrderedItems = async (setItems) => {
+const getOrderedItems = async (email, setItems) => {
   try {
-    const user = localStorage.getItem("user");
-
-    const response = await axios.get(`${url()}/auth/orders?user=${user}`);
+    const response = await axios.get(`${url()}/auth/orders?user=${email}`);
 
     if (response.data.success) setItems(response.data.orders);
     else setItems([]);
@@ -14,10 +12,9 @@ const getOrderedItems = async (setItems) => {
   }
 };
 
-const cancelOrders = async (id, setItems) => {
+const cancelOrders = async (email, id, setItems) => {
   try {
-    const user = localStorage.getItem("user");
-    await axios.delete(`${url()}/auth/orders?user=${user}&id=${id}`);
+    await axios.delete(`${url()}/auth/orders?user=${email}&id=${id}`);
     getOrderedItems(setItems);
   } catch (e) {
     console.log(e);

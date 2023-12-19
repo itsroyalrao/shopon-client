@@ -1,29 +1,33 @@
 import axios from "axios";
 import { url } from "./onMobile";
 
-const user = localStorage.getItem("user");
-
-const addedToCart = async (id, title, imageURL, price, description) => {
+const addedToCart = async (
+  email,
+  id,
+  title,
+  imageURL,
+  price,
+  description,
+  navigate
+) => {
   try {
     const response = await axios.post(`${url()}/auth/cart`, {
-      user,
+      user: email,
       id,
       title,
       imageURL,
       price,
       description,
     });
-    if (response.data.success) window.location.href = "/cart";
+    if (response.data.success) navigate("/cart");
   } catch (e) {
     console.log(e);
   }
 };
 
-const getCartItems = async (setItems, setTotal) => {
+const getCartItems = async (email, setItems, setTotal) => {
   try {
-    const user = localStorage.getItem("user");
-
-    const response = await axios.get(`${url()}/auth/cart?user=${user}`);
+    const response = await axios.get(`${url()}/auth/cart?user=${email}`);
 
     if (response.data.success) {
       let total = 0;
@@ -38,10 +42,10 @@ const getCartItems = async (setItems, setTotal) => {
   }
 };
 
-const increaseQuantity = async (id, navigate, setItems, setTotal) => {
+const increaseQuantity = async (email, id, navigate, setItems, setTotal) => {
   try {
     const response = await axios.post(`${url()}/auth/cart/increase`, {
-      user,
+      user: email,
       id,
     });
     if (response.data.success) {
@@ -53,10 +57,10 @@ const increaseQuantity = async (id, navigate, setItems, setTotal) => {
   }
 };
 
-const decreaseQuantity = async (id, navigate, setItems, setTotal) => {
+const decreaseQuantity = async (email, id, navigate, setItems, setTotal) => {
   try {
     const response = await axios.post(`${url()}/auth/cart/decrease`, {
-      user,
+      user: email,
       id,
     });
     if (response.data.success) {
@@ -68,34 +72,31 @@ const decreaseQuantity = async (id, navigate, setItems, setTotal) => {
   }
 };
 
-const removeFromCart = async (id) => {
+const removeFromCart = async (email, id, navigate) => {
   try {
     const response = await axios.delete(
-      `${url()}/auth/cart/remove?user=${user}&id=${id}`
+      `${url()}/auth/cart/remove?user=${email}&id=${id}`
     );
-    if (response.data.success) window.location.href = "/cart";
+    if (response.data.success) navigate("/cart");
   } catch (e) {
     console.log(e);
   }
 };
 
-const emptyCart = async () => {
+const emptyCart = async (email) => {
   try {
-    const user = localStorage.getItem("user");
-
-    await axios.delete(`${url()}/auth/cart?user=${user}`);
+    await axios.delete(`${url()}/auth/cart?user=${email}`);
   } catch (e) {
     console.log(e);
   }
 };
 
-const orderItems = async (items) => {
+const orderItems = async (email, items, navigate) => {
   try {
-    const user = localStorage.getItem("user");
-    const response = await axios.post(`${url()}/auth/orders`, { user, items });
+    const response = await axios.post(`${url()}/auth/orders`, { email, items });
     if (response.data.success) {
-      await emptyCart();
-      window.location.href = "/orders";
+      await emptyCart(email);
+      navigate("/orders");
     }
   } catch (e) {
     console.log(e);

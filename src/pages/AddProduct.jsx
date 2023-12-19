@@ -76,7 +76,7 @@ function AddProduct() {
                   : `border-2 border-[rgb(0,94,72)] flex justify-center text-lg py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer`
               }
               onClick={() => {
-                addItem(title, imageURL, price, description);
+                addItem(email, title, imageURL, price, description);
                 setTitle("");
                 setImageURL("");
                 setPrice("");

@@ -13,7 +13,7 @@ function Orders() {
   useEffect(() => {
     isAuthorized(navigate, email, setEmail);
 
-    if (email) getOrderedItems(setItems);
+    if (email) getOrderedItems(email, setItems);
   }, [email, navigate]);
   return (
     <>
@@ -48,7 +48,7 @@ function Orders() {
                       <div
                         className="border-2 border-red-500 hover:bg-red-500 px-3 py-1 rounded cursor-pointer"
                         onClick={() => {
-                          cancelOrders(item.id, setItems);
+                          cancelOrders(email, item.id, setItems);
                         }}
                       >
                         Cancel Order

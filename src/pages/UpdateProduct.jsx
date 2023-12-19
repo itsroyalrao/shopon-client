@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { getItem, updateItem } from "../functions/item";
 
 function UpdateProduct() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [imageURL, setImageURL] = useState("");
@@ -71,7 +72,7 @@ function UpdateProduct() {
             <div
               className="border-2 border-[rgb(0,94,72)] flex justify-center text-lg py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer"
               onClick={() => {
-                updateItem(id, title, imageURL, price, description);
+                updateItem(id, title, imageURL, price, description, navigate);
               }}
             >
               Update Product

@@ -4,11 +4,11 @@ import {
   getCartItems,
   decreaseQuantity,
   removeFromCart,
-  orderItems,
   increaseQuantity,
 } from "../functions/cart";
 import { useNavigate } from "react-router-dom";
 import { isAuthorized } from "../functions/user";
+import { displayRazorpay, loadRazorpay } from "../functions/payment";
 
 function Cart() {
   const navigate = useNavigate();
@@ -19,8 +19,10 @@ function Cart() {
 
   useEffect(() => {
     isAuthorized(navigate, email, setEmail);
-
-    if (email) getCartItems(setItems, setTotal);
+    if (email) {
+      loadRazorpay();
+      getCartItems(email, setItems, setTotal);
+    }
   }, [email, navigate]);
   return (
     <>
@@ -68,6 +70,7 @@ function Cart() {
                           className="p-2 fas fa-plus border-2 border-[rgb(0,94,72)] hover:bg-[rgb(0,94,72)] rounded-e cursor-pointer"
                           onClick={() => {
                             increaseQuantity(
+                              email,
                               item.id,
                               navigate,
                               setItems,
@@ -79,7 +82,7 @@ function Cart() {
                       <div
                         className="border-2 border-red-500 hover:bg-red-500 px-3 py-1 rounded cursor-pointer"
                         onClick={() => {
-                          removeFromCart(item.id);
+                          removeFromCart(email, item.id, navigate);
                         }}
                       >
                         Remove
@@ -96,8 +99,8 @@ function Cart() {
               <div className="grow"></div>
               <div
                 className="bg-blue-600 px-5 py-3 tracking-wider rounded cursor-pointer"
-                onClick={() => {
-                  orderItems(items);
+                onClick={async () => {
+                  await displayRazorpay(email, total, items, navigate);
                 }}
               >
                 PLACE ORDER

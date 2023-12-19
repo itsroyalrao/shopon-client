@@ -1,15 +1,13 @@
 import axios from "axios";
 import { url } from "./onMobile";
 
-const addItem = async (title, imageURL, price, description) => {
+const addItem = async (email, title, imageURL, price, description) => {
   try {
     if (title === "" || imageURL === "" || price === "") {
       console.log("Provide Details");
     } else {
-      const user = localStorage.getItem("user");
-
       await axios.post(`${url()}/add-product`, {
-        user,
+        user: email,
         title,
         imageURL,
         price,
@@ -50,7 +48,14 @@ const getAdminItems = async (email, setItems) => {
   }
 };
 
-const updateItem = async (id, title, imageURL, price, description) => {
+const updateItem = async (
+  id,
+  title,
+  imageURL,
+  price,
+  description,
+  navigate
+) => {
   try {
     const response = await axios.put(`${url()}/admin-products`, {
       id,
@@ -59,7 +64,7 @@ const updateItem = async (id, title, imageURL, price, description) => {
       price,
       description,
     });
-    if (response.data.success) window.location.href = "/admin/products";
+    if (response.data.success) navigate("/admin/products");
   } catch (e) {
     console.log(e);
   }

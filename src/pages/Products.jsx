@@ -54,11 +54,13 @@ function Products() {
                         className="border-2 border-[rgb(0,94,72)] px-3 py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer"
                         onClick={() => {
                           addedToCart(
+                            email,
                             item._id,
                             item.title,
                             item.imageURL,
                             item.price,
-                            item.description
+                            item.description,
+                            navigate
                           );
                         }}
                       >
