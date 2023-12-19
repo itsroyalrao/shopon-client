@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import onMobile from "../functions/onMobile";
+import { onMobile } from "../functions/onMobile";
 import MobileView from "./MobileView";
 
 function Header() {

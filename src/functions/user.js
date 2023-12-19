@@ -1,4 +1,30 @@
 import axios from "axios";
+import { url } from "./onMobile";
+
+const setCookies = async (email, navigate) => {
+  const response = await axios.get(`${url()}/auth/cookies?email=${email}`);
+  console.log(response);
+  if (response.data.success) {
+    document.cookie = `accessToken=${response.data.tokens.accessToken}`;
+    document.cookie = `refreshToken=${response.data.tokens.refreshToken}`;
+    navigate("/");
+  }
+};
+
+const isAuthorized = async (navigate, setEmail) => {
+  const cookies = {};
+  document.cookie.split("; ").forEach((cookie) => {
+    const temp = cookie.split("=");
+    cookies[temp[0]] = temp[1];
+  });
+
+  const response = await axios.post(`${url()}/cookies`, cookies);
+  if (response.data.success) {
+    setEmail(response.data.email);
+  } else {
+    navigate("/login");
+  }
+};
 
 async function addUser(username, email, password, confirmPassword, setMessage) {
   try {
@@ -9,16 +35,11 @@ async function addUser(username, email, password, confirmPassword, setMessage) {
     else {
       localStorage.setItem("user", email);
 
-      const response = await axios.post(
-        // `http://localhost:3000/auth/signup`,
-        // `https://shopon-backend-production.up.railway.app/auth/signup`,
-        `https://shopon.cyclic.app/auth/signup`,
-        {
-          username,
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${url()}/auth/signup`, {
+        username,
+        email,
+        password,
+      });
       if (response.data.success) window.location.href = "/";
       else setMessage(response.data.msg);
     }
@@ -27,23 +48,18 @@ async function addUser(username, email, password, confirmPassword, setMessage) {
   }
 }
 
-async function getUser(email, password, setMessage) {
+async function getUser(email, password, setMessage, navigate) {
   try {
     if (!email) setMessage("Please provide Email address");
     else if (!password) setMessage("Please provide Password");
     else {
       localStorage.setItem("user", email);
 
-      const response = await axios.post(
-        // `http://localhost:3000/auth/login`,
-        // `https://shopon-backend-production.up.railway.app/auth/login`,
-        `https://shopon.cyclic.app/auth/login`,
-        {
-          email,
-          password,
-        }
-      );
-      if (response.data.success) window.location.href = `/`;
+      const response = await axios.post(`${url()}/auth/login`, {
+        email,
+        password,
+      });
+      if (response.data.success) await setCookies(email, navigate);
       else setMessage(response.data.msg);
     }
   } catch (e) {
@@ -51,4 +67,4 @@ async function getUser(email, password, setMessage) {
   }
 }
 
-export { addUser, getUser };
+export { setCookies, isAuthorized, addUser, getUser };

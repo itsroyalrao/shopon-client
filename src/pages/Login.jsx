@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { getUser } from "../functions/user";
@@ -7,6 +7,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   return (
     <div className="w-full h-[100dvh] md:min-h-screen flex items-center justify-center bg-[#202020] text-black">
@@ -42,7 +44,7 @@ function Login() {
             )}
             <button
               className="w-full bg-[rgb(0,94,72)] flex justify-center py-2 rounded-lg text-white text-xl focus:scale-105"
-              onClick={() => getUser(email, password, setMessage)}
+              onClick={() => getUser(email, password, setMessage, navigate)}
             >
               Login
             </button>

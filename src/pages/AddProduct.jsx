@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "../components/Header";
-import onMobile from "../functions/onMobile";
+import { onMobile } from "../functions/onMobile";
 import { addItem } from "../functions/item";
 
 function AddProduct() {
