@@ -8,17 +8,21 @@ import { isAuthorized } from "../functions/user";
 function Products() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState(null);
+  const [email, setEmail] = useState(false);
+  // const [visitor, setVisitor] = useState(true);
   const [items, setItems] = useState(null);
 
+  // useEffect(() => {
+  //   getItems(setItems);
+  // }, []);
   useEffect(() => {
-    isAuthorized(navigate, setEmail);
+    isAuthorized(navigate, email, setEmail);
 
-    if (email) getItems(setItems);
+    getItems(setItems);
   }, [email, navigate]);
   return (
     <>
-      <Header />
+      <Header email={email} />
       {items ? (
         items.length ? (
           <>

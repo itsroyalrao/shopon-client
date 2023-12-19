@@ -7,17 +7,24 @@ import {
   removeFromCart,
   orderItems,
 } from "../functions/cart";
+import { useNavigate } from "react-router-dom";
+import { isAuthorized } from "../functions/user";
 
 function Cart() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState(null);
   const [items, setItems] = useState(null);
   const [total, setTotal] = useState(null);
 
   useEffect(() => {
-    getCartItems(setItems, total, setTotal);
-  }, []);
+    isAuthorized(navigate, email, setEmail);
+
+    if (email) getCartItems(setItems, setTotal);
+  }, [email, navigate]);
   return (
     <>
-      <Header />
+      <Header email={email} />
       {items ? (
         items.length ? (
           <>

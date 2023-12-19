@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { addUser } from "../functions/user";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,7 +58,14 @@ function Signup() {
             <button
               className="w-full bg-[rgb(0,94,72)] flex justify-center py-2 rounded-lg text-white text-xl focus:scale-105"
               onClick={() => {
-                addUser(username, email, password, confirmPassword, setMessage);
+                addUser(
+                  username,
+                  email,
+                  password,
+                  confirmPassword,
+                  setMessage,
+                  navigate
+                );
               }}
             >
               Sign up

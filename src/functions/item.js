@@ -40,6 +40,16 @@ const getItems = async (setItems) => {
   }
 };
 
+const getAdminItems = async (email, setItems) => {
+  try {
+    const response = await axios.get(`${url()}/products?email=${email}`);
+    if (response.data.success) setItems(response.data.items);
+    else setItems([]);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const updateItem = async (id, title, imageURL, price, description) => {
   try {
     const response = await axios.put(`${url()}/admin-products`, {
@@ -65,4 +75,4 @@ const deleteItem = async (id, setItems) => {
   }
 };
 
-export { addItem, getItem, getItems, updateItem, deleteItem };
+export { addItem, getItem, getItems, getAdminItems, updateItem, deleteItem };

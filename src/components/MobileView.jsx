@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function MobileView({ clicked, setClicked }) {
+function MobileView({ clicked, setClicked, email, username }) {
   return (
     <div className="flex justify-between items-center bg-[rgb(0,94,72)] px-5 py-4 sticky top-0 text-lg">
       <Link to={"/"} className="text-xl font-bold">
@@ -16,51 +16,67 @@ function MobileView({ clicked, setClicked }) {
         />
         {clicked && (
           <div className="w-[75%] h-full flex flex-col space-y-2 fixed top-[60px] right-0 bg-[#121212] p-3">
-            <Link to={"/"} className="flex items-center space-x-2 p-2 rounded">
+            {username && <div className="">{username}</div>}
+            <Link to={"/"} className="flex items-center space-x-2 p-2">
               <i className="fas fa-tag" />
               <div className="">Products</div>
             </Link>
-            <Link
-              to={"/cart"}
-              className="flex items-center space-x-2 p-2 rounded"
-            >
+            <Link to={"/cart"} className="flex items-center space-x-2 p-2">
               <i className="fas fa-shopping-cart" />
               <div className="">Cart</div>
             </Link>
-            <Link
-              to={"/orders"}
-              className="flex items-center space-x-2 p-2 rounded"
-            >
+            <Link to={"/orders"} className="flex items-center space-x-2 p-2">
               <i className="fas fa-clipboard-list" />
               <div className="">Orders</div>
             </Link>
             <Link
               to={"/admin/add-product"}
-              className="flex items-center space-x-2 p-2 rounded"
+              className="flex items-center space-x-2 p-2"
             >
               <i className="fas fa-plus-circle" />
               <div className="">Add Product</div>
             </Link>
             <Link
               to={"/admin/products"}
-              className="flex items-center space-x-2 p-2 rounded"
+              className="flex items-center space-x-2 p-2"
             >
               <i className="fas fa-shopping-bag" />
               <div className="">Admin Products</div>
             </Link>
             {/* <Link
               to={"/contact-us"}
-              className="flex items-center space-x-2 p-2 rounded"
+              className="flex items-center space-x-2 p-2"
             >
               <i className="fas fa-phone" />
               <div className="">Contact Us</div>
             </Link> */}
-            <Link
-              to={"/login"}
-              className="flex justify-center text-[whitesmoke] bg-red-600 px-3 py-2 rounded active:bg-red-700"
-            >
-              Logout
-            </Link>
+            <div className=" flex items-center space-x-1">
+              {email ? (
+                <>
+                  <Link
+                    to={"/login"}
+                    className="w-full flex justify-center bg-red-500 py-2 rounded"
+                  >
+                    Logout
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to={"/signup"}
+                    className="w-full flex justify-center bg-blue-600 px-4 py-2 rounded"
+                  >
+                    Register
+                  </Link>
+                  <Link
+                    to={"/login"}
+                    className="w-full flex justify-center bg-[rgb(0,94,72)] px-4 py-2 rounded"
+                  >
+                    Login
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -71,6 +87,8 @@ function MobileView({ clicked, setClicked }) {
 MobileView.propTypes = {
   clicked: PropTypes.bool,
   setClicked: PropTypes.func,
+  email: PropTypes.any,
+  username: PropTypes.string,
 };
 
 export default MobileView;

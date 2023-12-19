@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import Header from "../components/Header";
-import { deleteItem, getItems } from "../functions/item";
+import { deleteItem, getAdminItems } from "../functions/item";
+import { isAuthorized } from "../functions/user";
 
 function AdminProducts() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState(null);
   const [items, setItems] = useState(null);
 
   useEffect(() => {
-    getItems(setItems);
-  }, []);
+    isAuthorized(navigate, email, setEmail);
+
+    if (email) getAdminItems(email, setItems);
+  }, [email, navigate]);
   return (
     <>
-      <Header />
+      <Header email={email} />
       {items && items.length ? (
         <>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5">

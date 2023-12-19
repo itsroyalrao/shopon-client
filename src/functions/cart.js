@@ -19,13 +19,14 @@ const addedToCart = async (id, title, imageURL, price, description) => {
   }
 };
 
-const getCartItems = async (setItems, total, setTotal) => {
+const getCartItems = async (setItems, setTotal) => {
   try {
     const user = localStorage.getItem("user");
 
     const response = await axios.get(`${url()}/auth/cart?user=${user}`);
 
     if (response.data.success) {
+      let total = 0;
       response.data.items.forEach((item) => {
         total += item.price * item.quantity;
       });

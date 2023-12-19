@@ -1,18 +1,30 @@
+import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
-import { onMobile } from "../functions/onMobile";
-import MobileView from "./MobileView";
+import { useEffect, useState } from "react";
 
-function Header() {
+import MobileView from "./MobileView";
+import { onMobile } from "../functions/onMobile";
+import { getUserDetails } from "../functions/user";
+
+function Header({ email }) {
   const loc = useLocation();
   const pageName = loc.pathname.replace("/", "");
 
   const [clicked, setClicked] = useState(false);
+  const [username, setUsername] = useState(null);
 
+  useEffect(() => {
+    if (email) getUserDetails(email, setUsername);
+  }, [email]);
   return (
     <>
       {onMobile() ? (
-        <MobileView clicked={clicked} setClicked={setClicked} />
+        <MobileView
+          clicked={clicked}
+          setClicked={setClicked}
+          email={email}
+          username={username}
+        />
       ) : (
         <>
           <div className="hidden lg:flex justify-between items-center bg-[rgb(0,94,72)] px-9 sticky top-0 text-lg">
@@ -71,25 +83,48 @@ function Header() {
                 </Link> */}
               </div>
             </div>
-            <div className="flex items-center">
-              <Link
-                to={"/login"}
-                className="bg-red-500 px-4 py-2 rounded"
-                onClick={() => {
-                  localStorage.clear();
-                }}
-              >
-                Logout
-              </Link>
+            <div className="flex items-center space-x-1">
+              {email ? (
+                <>
+                  {username && <div className="">{username}</div>}
+                  <Link to={"/login"} className="bg-red-500 px-4 py-2 rounded">
+                    Logout
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to={"/signup"}
+                    className="bg-blue-600 px-4 py-2 rounded"
+                  >
+                    Register
+                  </Link>
+                  <Link
+                    to={"/login"}
+                    className="px-4 py-2 rounded hover:bg-white hover:text-[rgb(0,94,72)] hover:font-bold"
+                  >
+                    Login
+                  </Link>
+                </>
+              )}
             </div>
           </div>
-          <div className="lg:hidden px-4 bg-[rgb(0,94,72)]">
-            <MobileView clicked={clicked} setClicked={setClicked} />
+          <div className="lg:hidden px-4 bg-[rgb(0,94,72)] sticky top-0">
+            <MobileView
+              clicked={clicked}
+              setClicked={setClicked}
+              email={email}
+              username={username}
+            />
           </div>
         </>
       )}
     </>
   );
 }
+
+Header.propTypes = {
+  email: PropTypes.any,
+};
 
 export default Header;

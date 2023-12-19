@@ -11,7 +11,7 @@ const setCookies = async (email, navigate) => {
   }
 };
 
-const isAuthorized = async (navigate, setEmail) => {
+const isAuthorized = async (navigate, email, setEmail) => {
   const cookies = {};
   document.cookie.split("; ").forEach((cookie) => {
     const temp = cookie.split("=");
@@ -21,12 +21,19 @@ const isAuthorized = async (navigate, setEmail) => {
   const response = await axios.post(`${url()}/cookies`, cookies);
   if (response.data.success) {
     setEmail(response.data.email);
-  } else {
+  } else if (email !== false) {
     navigate("/login");
   }
 };
 
-async function addUser(username, email, password, confirmPassword, setMessage) {
+async function addUser(
+  username,
+  email,
+  password,
+  confirmPassword,
+  setMessage,
+  navigate
+) {
   try {
     if (!username) setMessage("Please provide Username");
     else if (!email) setMessage("Please provide Email address");
@@ -40,7 +47,7 @@ async function addUser(username, email, password, confirmPassword, setMessage) {
         email,
         password,
       });
-      if (response.data.success) window.location.href = "/";
+      if (response.data.success) navigate("/login");
       else setMessage(response.data.msg);
     }
   } catch (e) {
@@ -53,8 +60,6 @@ async function getUser(email, password, setMessage, navigate) {
     if (!email) setMessage("Please provide Email address");
     else if (!password) setMessage("Please provide Password");
     else {
-      localStorage.setItem("user", email);
-
       const response = await axios.post(`${url()}/auth/login`, {
         email,
         password,
@@ -67,4 +72,16 @@ async function getUser(email, password, setMessage, navigate) {
   }
 }
 
-export { setCookies, isAuthorized, addUser, getUser };
+async function getUserDetails(email, setUsername) {
+  try {
+    const response = await axios.get(
+      `${url()}/auth/userdetails?email=${email}`
+    );
+    console.log(response);
+    if (response.data.success) setUsername(response.data.user.username);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export { setCookies, isAuthorized, addUser, getUser, getUserDetails };

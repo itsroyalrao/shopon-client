@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { getOrderedItems, cancelOrders } from "../functions/orders";
+import { isAuthorized } from "../functions/user";
+import { useNavigate } from "react-router-dom";
 
 function Orders() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState(null);
   const [items, setItems] = useState(null);
 
   useEffect(() => {
-    getOrderedItems(setItems);
-  }, []);
+    isAuthorized(navigate, email, setEmail);
+
+    if (email) getOrderedItems(setItems);
+  }, [email, navigate]);
   return (
     <>
-      <Header />
+      <Header email={email} />
       {items ? (
         items.length ? (
           <>
