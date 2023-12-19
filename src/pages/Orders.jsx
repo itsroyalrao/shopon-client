@@ -61,7 +61,10 @@ function Orders() {
           </>
         ) : (
           <div className="grow flex justify-center items-center text-3xl">
-            No orders yet
+            <i
+              className="fa-sharp fa-solid fa-folder-open text-6xl"
+              title="List is empty"
+            ></i>
           </div>
         )
       ) : (

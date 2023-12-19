@@ -95,8 +95,11 @@ function Cart() {
             </div>
           </>
         ) : (
-          <div className="grow flex justify-center items-center text-3xl">
-            Cart is empty
+          <div className="grow flex justify-center items-center">
+            <i
+              className="fa-sharp fa-solid fa-folder-open text-6xl"
+              title="Cart is empty"
+            ></i>
           </div>
         )
       ) : (
