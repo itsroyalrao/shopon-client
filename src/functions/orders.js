@@ -15,7 +15,7 @@ const getOrderedItems = async (email, setItems) => {
 const cancelOrders = async (email, id, setItems) => {
   try {
     await axios.delete(`${url()}/auth/orders?user=${email}&id=${id}`);
-    getOrderedItems(setItems);
+    getOrderedItems(email, setItems);
   } catch (e) {
     console.log(e);
   }
