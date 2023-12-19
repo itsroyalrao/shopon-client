@@ -95,7 +95,7 @@ const orderItems = async (email, items, navigate) => {
   try {
     const response = await axios.post(`${url()}/auth/orders`, { email, items });
     if (response.data.success) {
-      await emptyCart(email);
+      emptyCart(email);
       navigate("/orders");
     }
   } catch (e) {

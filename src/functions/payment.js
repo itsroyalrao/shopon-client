@@ -29,7 +29,7 @@ const displayRazorpay = async (email, total, orders, navigate) => {
             orderId,
             orders,
           });
-          await orderItems(email, orders, navigate);
+          orderItems(email, orders, navigate);
         },
       };
 
