@@ -2,12 +2,15 @@ import axios from "axios";
 import { url } from "./onMobile";
 
 const setCookies = async (email, navigate) => {
-  const response = await axios.get(`${url()}/auth/cookies?email=${email}`);
-  console.log(response);
-  if (response.data.success) {
-    document.cookie = `accessToken=${response.data.tokens.accessToken}`;
-    document.cookie = `refreshToken=${response.data.tokens.refreshToken}`;
-    navigate("/");
+  try {
+    const response = await axios.get(`${url()}/auth/cookies?email=${email}`);
+    if (response.data.success) {
+      document.cookie = `accessToken=${response.data.tokens.accessToken}`;
+      document.cookie = `refreshToken=${response.data.tokens.refreshToken}`;
+      navigate("/");
+    }
+  } catch (e) {
+    console.log(e);
   }
 };
 
@@ -77,7 +80,6 @@ async function getUserDetails(email, setUsername) {
     const response = await axios.get(
       `${url()}/auth/userdetails?email=${email}`
     );
-    console.log(response);
     if (response.data.success) setUsername(response.data.user.username);
   } catch (e) {
     console.log(e);

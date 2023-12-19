@@ -59,7 +59,6 @@ const updateItem = async (id, title, imageURL, price, description) => {
       price,
       description,
     });
-    console.log(response);
     if (response.data.success) window.location.href = "/admin/products";
   } catch (e) {
     console.log(e);
