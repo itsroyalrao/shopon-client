@@ -1,14 +1,15 @@
 import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import MobileView from "./MobileView";
 import { onMobile } from "../functions/onMobile";
-import { getUserDetails } from "../functions/user";
+import { getUserDetails, logoutUser } from "../functions/user";
 
 function Header({ email }) {
   const loc = useLocation();
   const pageName = loc.pathname.replace("/", "");
+  const navigate = useNavigate();
 
   const [clicked, setClicked] = useState(false);
   const [username, setUsername] = useState(null);
@@ -24,6 +25,7 @@ function Header({ email }) {
           setClicked={setClicked}
           email={email}
           username={username}
+          navigate={navigate}
         />
       ) : (
         <>
@@ -87,9 +89,12 @@ function Header({ email }) {
               {email ? (
                 <>
                   {username && <div className="px-4">{username}</div>}
-                  <Link to={"/login"} className="bg-red-500 px-4 py-2 rounded">
+                  <div
+                    className="bg-red-500 px-4 py-2 rounded cursor-pointer"
+                    onClick={() => logoutUser(navigate)}
+                  >
                     Logout
-                  </Link>
+                  </div>
                 </>
               ) : (
                 <>
@@ -115,6 +120,7 @@ function Header({ email }) {
               setClicked={setClicked}
               email={email}
               username={username}
+              navigate={navigate}
             />
           </div>
         </>

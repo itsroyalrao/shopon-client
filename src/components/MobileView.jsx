@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { logoutUser } from "../functions/user";
 
-function MobileView({ clicked, setClicked, email, username }) {
+function MobileView({ clicked, setClicked, email, username, navigate }) {
   return (
     <div className="flex justify-between items-center bg-[rgb(0,94,72)] px-5 py-4 sticky top-0 text-lg">
       <Link to={"/"} className="text-xl font-bold">
@@ -58,12 +59,12 @@ function MobileView({ clicked, setClicked, email, username }) {
             <div className=" flex items-center space-x-1">
               {email ? (
                 <>
-                  <Link
-                    to={"/login"}
+                  <div
                     className="w-full flex justify-center bg-red-500 py-2 rounded"
+                    onClick={() => logoutUser(navigate)}
                   >
                     Logout
-                  </Link>
+                  </div>
                 </>
               ) : (
                 <>
@@ -94,6 +95,7 @@ MobileView.propTypes = {
   setClicked: PropTypes.func,
   email: PropTypes.any,
   username: PropTypes.string,
+  navigate: PropTypes.func,
 };
 
 export default MobileView;

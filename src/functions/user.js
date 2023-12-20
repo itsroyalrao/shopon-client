@@ -43,8 +43,6 @@ async function addUser(
     else if (!password) setMessage("Please provide Password");
     else if (password !== confirmPassword) setMessage("Password doesn't match");
     else {
-      localStorage.setItem("user", email);
-
       const response = await axios.post(`${url()}/auth/signup`, {
         username,
         email,
@@ -86,4 +84,21 @@ async function getUserDetails(email, setUsername) {
   }
 }
 
-export { setCookies, isAuthorized, addUser, getUser, getUserDetails };
+async function logoutUser(navigate) {
+  try {
+    document.cookie = `accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    document.cookie = `refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    navigate("/login");
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export {
+  setCookies,
+  isAuthorized,
+  addUser,
+  getUser,
+  getUserDetails,
+  logoutUser,
+};
