@@ -51,7 +51,7 @@ function AdminProducts() {
                       </Link>
                       <div
                         className="border-2 border-red-500 px-3 py-1 rounded hover:bg-red-500 cursor-pointer"
-                        onClick={() => deleteItem(item._id, setItems)}
+                        onClick={() => deleteItem(email, item._id, setItems)}
                       >
                         Delete
                       </div>

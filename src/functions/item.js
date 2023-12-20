@@ -1,18 +1,28 @@
 import axios from "axios";
 import { url } from "./onMobile";
 
-const addItem = async (email, title, imageURL, price, description) => {
+const addItem = async (
+  email,
+  title,
+  imageURL,
+  price,
+  description,
+  setMessage,
+  navigate
+) => {
   try {
-    if (title === "" || imageURL === "" || price === "") {
-      console.log("Provide Details");
-    } else {
-      await axios.post(`${url()}/add-product`, {
+    if (title === "") setMessage("Please provide title");
+    else if (imageURL === "") setMessage("Please provide image URL");
+    else if (price <= 1) setMessage("Price is invalid");
+    else {
+      const response = await axios.post(`${url()}/add-product`, {
         user: email,
         title,
         imageURL,
         price,
         description,
       });
+      if (response.data.success) navigate("/");
     }
   } catch (e) {
     console.log(e);
@@ -70,10 +80,10 @@ const updateItem = async (
   }
 };
 
-const deleteItem = async (id, setItems) => {
+const deleteItem = async (email, id, setItems) => {
   try {
     await axios.delete(`${url()}/admin-products?id=${id}`);
-    getItems(setItems);
+    getAdminItems(email, setItems);
   } catch (e) {
     console.log(e);
   }

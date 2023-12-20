@@ -14,6 +14,7 @@ function AddProduct() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     isAuthorized(navigate, email, setEmail);
@@ -38,7 +39,13 @@ function AddProduct() {
                 className="w-full px-3 py-1 bg-[#484848] rounded"
                 autoFocus
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => {
+                  setMessage(null);
+                  setTitle(e.target.value);
+                  setImageURL(
+                    `https://source.unsplash.com/random?${e.target.value}`
+                  );
+                }}
               />
             </div>
             <div className="w-full space-y-1">
@@ -47,7 +54,10 @@ function AddProduct() {
                 type="text"
                 className="w-full px-3 py-1 bg-[#484848] rounded"
                 value={imageURL}
-                onChange={(e) => setImageURL(e.target.value)}
+                onChange={(e) => {
+                  setMessage(null);
+                  setImageURL(e.target.value);
+                }}
               />
             </div>
             <div className="w-full space-y-1">
@@ -56,19 +66,29 @@ function AddProduct() {
                 type="number"
                 className="w-full px-3 py-1 bg-[#484848] rounded"
                 value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => {
+                  setMessage(null);
+                  setPrice(e.target.value);
+                }}
               />
             </div>
             <div className="w-full space-y-1">
               <div>Description</div>
               <textarea
-                cols="30"
-                rows="5"
+                rows="4"
                 className="w-full px-3 py-1 bg-[#484848] rounded"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => {
+                  setMessage(null);
+                  setDescription(e.target.value);
+                }}
               />
             </div>
+            {message && (
+              <div className="flex justify-center text-red-600 text-lg">
+                {message}
+              </div>
+            )}
             <div
               className={
                 onMobile
@@ -76,11 +96,15 @@ function AddProduct() {
                   : `border-2 border-[rgb(0,94,72)] flex justify-center text-lg py-1 rounded hover:bg-[rgb(0,94,72)] cursor-pointer`
               }
               onClick={() => {
-                addItem(email, title, imageURL, price, description);
-                setTitle("");
-                setImageURL("");
-                setPrice("");
-                setDescription("");
+                addItem(
+                  email,
+                  title,
+                  imageURL,
+                  price,
+                  description,
+                  setMessage,
+                  navigate
+                );
               }}
             >
               Add Product
