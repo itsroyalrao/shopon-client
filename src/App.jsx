@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
@@ -8,10 +10,11 @@ import UpdateProduct from "./pages/UpdateProduct";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 // import ContactUs from "./pages/ContactUs";
+import store from "./app/store.js";
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <Router>
         <div className="flex flex-col w-full min-h-[100svh] bg-[#242424] text-white relative">
           <Routes>
@@ -27,7 +30,7 @@ function App() {
           </Routes>
         </div>
       </Router>
-    </>
+    </Provider>
   );
 }
 
