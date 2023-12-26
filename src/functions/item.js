@@ -1,5 +1,6 @@
 import axios from "axios";
 import { url } from "./onMobile";
+import { setCustomProducts } from "../features/home/shopSlice";
 
 const addItem = async (
   email,
@@ -38,11 +39,13 @@ const getItem = async (id, setItem) => {
   }
 };
 
-const getItems = async (setItems) => {
+const getItems = async (dispatch) => {
   try {
     const response = await axios.get(`${url()}/products`);
-    if (response.data.success) setItems(response.data.items);
-    else setItems([]);
+    console.log(response);
+    // if (response.data.success) setItems(response.data.items);
+    if (response.data.success) dispatch(setCustomProducts(response.data.items));
+    // else setItems([]);
   } catch (e) {
     console.log(e);
   }

@@ -11,15 +11,19 @@ const addedToCart = async (
   navigate
 ) => {
   try {
-    const response = await axios.post(`${url()}/auth/cart`, {
-      user: email,
-      id,
-      title,
-      imageURL,
-      price,
-      description,
-    });
-    if (response.data.success) navigate("/cart");
+    if (email) {
+      const response = await axios.post(`${url()}/auth/cart`, {
+        user: email,
+        id,
+        title,
+        imageURL,
+        price,
+        description,
+      });
+      if (response.data.success) navigate("/cart");
+    } else {
+      navigate("/login");
+    }
   } catch (e) {
     console.log(e);
   }
