@@ -1,18 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getUser } from "../functions/user";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const navigate = useNavigate();
-
   return (
-    <div className="w-full h-[100dvh] md:min-h-screen flex items-center justify-center bg-[#202020] text-black">
-      <div className="w-full sm:w-[64%] md:w-[48%] lg:w-[32%] h-full sm:h-[80%] flex flex-col items-center justify-center bg-white py-[10%] space-y-6 sm:rounded-2xl">
+    <div className="w-full h-[100dvh] min-h-[100dvh] flex items-center justify-center bg-[#202020] text-black overflow-auto">
+      <div className="w-full sm:w-[64%] md:w-[48%] lg:w-[32%] h-full sm:h-fit flex flex-col items-center justify-center bg-white py-9 space-y-6 sm:rounded-2xl">
         <div className="flex justify-center text-4xl font-bold text-[rgb(0,94,72)]">
           ShopOn
         </div>
