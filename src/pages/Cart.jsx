@@ -56,8 +56,8 @@ function Cart() {
                           className="p-2 fas fa-minus border-2 border-[rgb(0,94,72)] hover:bg-[rgb(0,94,72)] rounded-s cursor-pointer"
                           onClick={() => {
                             decreaseQuantity(
+                              email,
                               item.id,
-                              navigate,
                               setItems,
                               setTotal
                             );
@@ -72,7 +72,6 @@ function Cart() {
                             increaseQuantity(
                               email,
                               item.id,
-                              navigate,
                               setItems,
                               setTotal
                             );

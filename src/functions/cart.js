@@ -46,7 +46,7 @@ const getCartItems = async (email, setItems, setTotal) => {
   }
 };
 
-const increaseQuantity = async (email, id, navigate, setItems, setTotal) => {
+const increaseQuantity = async (email, id, setItems, setTotal) => {
   try {
     const response = await axios.post(`${url()}/auth/cart/increase`, {
       user: email,
@@ -54,14 +54,14 @@ const increaseQuantity = async (email, id, navigate, setItems, setTotal) => {
     });
     if (response.data.success) {
       getCartItems(setItems, setTotal);
-      navigate("/cart");
+      window.location.reload();
     }
   } catch (e) {
     console.log(e);
   }
 };
 
-const decreaseQuantity = async (email, id, navigate, setItems, setTotal) => {
+const decreaseQuantity = async (email, id, setItems, setTotal) => {
   try {
     const response = await axios.post(`${url()}/auth/cart/decrease`, {
       user: email,
@@ -69,19 +69,19 @@ const decreaseQuantity = async (email, id, navigate, setItems, setTotal) => {
     });
     if (response.data.success) {
       getCartItems(setItems, setTotal);
-      navigate("/cart");
+      window.location.reload();
     }
   } catch (e) {
     console.log(e);
   }
 };
 
-const removeFromCart = async (email, id, navigate) => {
+const removeFromCart = async (email, id) => {
   try {
     const response = await axios.delete(
       `${url()}/auth/cart/remove?user=${email}&id=${id}`
     );
-    if (response.data.success) navigate("/cart");
+    if (response.data.success) window.location.reload();
   } catch (e) {
     console.log(e);
   }
