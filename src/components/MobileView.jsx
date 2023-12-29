@@ -47,7 +47,7 @@ function MobileView({ clicked, setClicked, email, username, navigate }) {
               className="flex items-center space-x-2 p-2"
             >
               <i className="fas fa-shopping-bag" />
-              <div className="">Admin Products</div>
+              <div className="">My Products</div>
             </Link>
             <div className=" flex items-center space-x-1">
               {email ? (

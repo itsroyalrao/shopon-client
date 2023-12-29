@@ -9,12 +9,8 @@ function Products() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState(false);
-  // const [visitor, setVisitor] = useState(true);
   const [items, setItems] = useState(null);
 
-  // useEffect(() => {
-  //   getItems(setItems);
-  // }, []);
   useEffect(() => {
     isAuthorized(navigate, email, setEmail);
 

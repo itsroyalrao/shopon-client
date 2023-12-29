@@ -73,7 +73,7 @@ function Header({ email }) {
                     pageName === "admin/products" ? "text-yellow-400" : ""
                   }`}
                 >
-                  Admin Products
+                  My Products
                 </Link>
               </div>
             </div>

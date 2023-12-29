@@ -1,12 +1,11 @@
 import axios from "axios";
-import { setProducts } from "../features/home/shopSlice";
 
 const baseURL = "https://fakestoreapi.com";
 
-const getApiProducts = async (dispatch) => {
+const getApiProducts = async (setItems) => {
   try {
     const response = await axios(`${baseURL}/products`);
-    dispatch(setProducts(response.data));
+    setItems((prevProducts) => [...prevProducts, ...response.data]);
   } catch (e) {
     console.log(e);
   }
