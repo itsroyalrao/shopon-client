@@ -1,14 +1,8 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { logoutUser } from "../functions/user";
-import LogoutButton from "./LogoutButton";
-import RegisterButton from "./RegisterButton";
-import LoginButton from "./LoginButton";
-import { useAuth0 } from "@auth0/auth0-react";
 
 function MobileView({ clicked, setClicked, email, username, navigate }) {
-  const { isAuthenticated } = useAuth0();
-
   return (
     <div className="flex justify-between items-center bg-[rgb(0,94,72)] px-5 py-4 sticky top-0 text-lg">
       <Link to={"/"} className="text-xl font-bold">
@@ -56,7 +50,7 @@ function MobileView({ clicked, setClicked, email, username, navigate }) {
               <div className="">Admin Products</div>
             </Link>
             <div className=" flex items-center space-x-1">
-              {/* {email ? (
+              {email ? (
                 <>
                   <div
                     className="w-full flex justify-center bg-red-500 py-2 rounded"
@@ -80,20 +74,6 @@ function MobileView({ clicked, setClicked, email, username, navigate }) {
                     Login
                   </Link>
                 </>
-              )} */}
-              {isAuthenticated ? (
-                <div className="w-full">
-                  <LogoutButton />
-                </div>
-              ) : (
-                <div className="w-full flex gap-1">
-                  <div className="w-full">
-                    <RegisterButton />
-                  </div>
-                  <div className="w-full">
-                    <LoginButton />
-                  </div>
-                </div>
               )}
             </div>
           </div>

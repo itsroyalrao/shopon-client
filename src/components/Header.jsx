@@ -1,21 +1,15 @@
 import PropTypes from "prop-types";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 
 import MobileView from "./MobileView";
 import { onMobile } from "../functions/onMobile";
 import { getUserDetails, logoutUser } from "../functions/user";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
-import RegisterButton from "./RegisterButton";
 
 function Header({ email }) {
   const loc = useLocation();
   const pageName = loc.pathname.replace("/", "");
   const navigate = useNavigate();
-
-  const { isAuthenticated } = useAuth0();
 
   const [clicked, setClicked] = useState(false);
   const [username, setUsername] = useState(null);
@@ -84,7 +78,7 @@ function Header({ email }) {
               </div>
             </div>
             <div className="flex items-center space-x-1">
-              {/* {email ? (
+              {email ? (
                 <>
                   {username && <div className="px-4">{username}</div>}
                   <div
@@ -109,14 +103,6 @@ function Header({ email }) {
                     Login
                   </Link>
                 </>
-              )} */}
-              {isAuthenticated ? (
-                <LogoutButton />
-              ) : (
-                <div className="flex gap-1">
-                  <RegisterButton />
-                  <LoginButton />
-                </div>
               )}
             </div>
           </div>
