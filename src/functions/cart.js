@@ -53,7 +53,7 @@ const increaseQuantity = async (email, id, setItems, setTotal) => {
       id,
     });
     if (response.data.success) {
-      getCartItems(setItems, setTotal);
+      getCartItems(email, setItems, setTotal);
       window.location.reload();
     }
   } catch (e) {
@@ -68,7 +68,7 @@ const decreaseQuantity = async (email, id, setItems, setTotal) => {
       id,
     });
     if (response.data.success) {
-      getCartItems(setItems, setTotal);
+      getCartItems(email, setItems, setTotal);
       window.location.reload();
     }
   } catch (e) {
